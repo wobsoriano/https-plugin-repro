@@ -21,10 +21,10 @@ export function httpsPlugin(): BunPlugin {
 
       build.onLoad({ filter: /.*/, namespace: 'http-url' }, async (args) => {
         const response = await fetch(args.path)
-        const text = await response.text()
+        const contents = await response.text()
 
         return {
-          contents: `export default ${JSON.stringify(text)}`,
+          contents,
           loader: 'js'
         }
       })
